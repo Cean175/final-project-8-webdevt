@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import '../App.css';
 
-const USERS = [
-    { username: 'admin', password: 'admin123' },
-    { username: 'user1', password: 'password1' },
-];
-
 const Login = () => {
+    const [users, setUsers] = useState(() => {
+        const savedUsers = localStorage.getItem('users');
+        return savedUsers
+            ? JSON.parse(savedUsers)
+            : [
+                  { username: 'admin', password: 'admin123' },
+                  { username: 'user1', password: 'password1' },
+              ];
+    });
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -16,8 +20,10 @@ const Login = () => {
     const [newUsername, setNewUsername] = useState('');
     const [newPassword, setNewPassword] = useState('');
 
+    const validateInput = (input) => /^[a-zA-Z0-9-@]+$/.test(input);
+
     const handleLogin = () => {
-        const user = USERS.find(
+        const user = users.find(
             (u) => u.username === username && u.password === password
         );
         if (user) {
@@ -30,20 +36,29 @@ const Login = () => {
     };
 
     const handleCreateAccount = () => {
-        if (newUsername && newPassword) {
-            USERS.push({ username: newUsername, password: newPassword });
-            setShowCreateAccount(false);
-            setError('');
-            setUsername(newUsername);
-            setPassword(newPassword);
-        } else {
+        if (!newUsername || !newPassword) {
             setError('Please fill in both fields');
             setTimeout(() => setError(''), 3000);
+            return;
         }
+
+        if (!validateInput(newUsername) || !validateInput(newPassword)) {
+            setError('Only letters and numbers are allowed for username and password');
+            setTimeout(() => setError(''), 3000);
+            return;
+        }
+
+        const updatedUsers = [...users, { username: newUsername, password: newPassword }];
+        setUsers(updatedUsers);
+        localStorage.setItem('users', JSON.stringify(updatedUsers));
+        setShowCreateAccount(false);
+        setError('');
+        setUsername(newUsername);
+        setPassword(newPassword);
     };
 
     const handleForgotPassword = () => {
-        const user = USERS.find((u) => u.username === username);
+        const user = users.find((u) => u.username === username);
         if (user) {
             alert(`Password recovery email sent to ${username}`);
         } else {
@@ -68,7 +83,7 @@ const Login = () => {
                                 value={username}
                                 onChange={(e) => {
                                     setUsername(e.target.value);
-                                    setError(''); 
+                                    setError('');
                                 }}
                             />
                             <input
@@ -99,7 +114,7 @@ const Login = () => {
                                 value={newUsername}
                                 onChange={(e) => {
                                     setNewUsername(e.target.value);
-                                    setError(''); 
+                                    setError('');
                                 }}
                             />
                             <input
@@ -125,7 +140,7 @@ const Login = () => {
                                 value={username}
                                 onChange={(e) => {
                                     setUsername(e.target.value);
-                                    setError(''); 
+                                    setError('');
                                 }}
                             />
                             <button onClick={handleForgotPassword}>Recover Password</button>
