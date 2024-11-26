@@ -7,8 +7,8 @@ const Login = () => {
         return savedUsers
             ? JSON.parse(savedUsers)
             : [
-                  { username: 'admin', password: 'admin123' },
-                  { username: 'user1', password: 'password1' },
+                  { username: '', password: '' },
+                  { username: '', password: '' },
               ];
     });
     const [username, setUsername] = useState('');
