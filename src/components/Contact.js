@@ -30,8 +30,7 @@ const Contact = () => {
     setError('');
     setSuccessMessage('Thank you for reaching out! We will get back to you soon.');
 
-    // Here you can handle form submission, e.g., sending the data to a server.
-    // For now, we just reset the form:
+    
     setFormData({
       name: '',
       email: '',
