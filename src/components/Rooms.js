@@ -7,7 +7,7 @@ const roomsData = [
     name: "Deluxe Suite",
     description: "A luxurious room with a king-size bed and stunning views.",
     price: "₱11000/night",
-    image: "family-suite.jpg", // Replace with actual image URLs
+    image: "family-suite.jpg", 
   },
   {
     id: 2,
