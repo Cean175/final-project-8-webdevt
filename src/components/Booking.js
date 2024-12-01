@@ -114,12 +114,19 @@ const Booking = () => {
     e.preventDefault();
     if (validateDates() && selectedRoom) {
       const confirmationId = generateConfirmationId();
-      setConfirmationDetails({
+      const newBooking = {
         ...bookingDetails,
         roomName: selectedRoom.name,
         price: selectedRoom.price,
         confirmationId: confirmationId,
-      });
+      };
+
+      // Save the booking data to localStorage
+      const storedBookings = JSON.parse(localStorage.getItem("bookings")) || [];
+      storedBookings.push(newBooking);
+      localStorage.setItem("bookings", JSON.stringify(storedBookings));
+
+      setConfirmationDetails(newBooking);
     }
   };
 
@@ -265,9 +272,6 @@ const Booking = () => {
           <p><strong>Name:</strong> {confirmationDetails.name}</p>
           <p><strong>Room Type:</strong> {confirmationDetails.roomName}</p>
           <p><strong>Price:</strong> ₱{confirmationDetails.price}</p>
-          {paymentMethod === "Hotel" && (
-            <p><strong>Note:</strong> Your reservation will not be completed if you do not settle payment.</p>
-          )}
           <button onClick={handleCancelReservation}>Cancel Reservation</button>
         </div>
       )}

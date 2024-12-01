@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Booking from './components/Booking'; 
 import Contact from './components/Contact';  
 import Rooms from './components/Rooms';  
+import Admin from './components/admin_component/admin';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -27,10 +28,12 @@ function App() {
       {isLoggedIn && <Header />}
       <Routes>
         <Route path="/" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/admin" element={<Admin />} />
         <Route 
           path="/home" 
           element={<ProtectedRoute><Home /></ProtectedRoute>} 
         />
+        
         <Route 
           path="/rooms" 
           element={<ProtectedRoute><Rooms /></ProtectedRoute>} 
