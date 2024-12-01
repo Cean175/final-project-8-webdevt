@@ -83,3 +83,48 @@
 .contact-form button:hover {
     background-color: #333;
 }
+
+.booking-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    gap: 20px;
+  }
+  
+  .form-container {
+    width: 40%;
+    transition: all 0.5s ease;
+  }
+  
+  .form-center {
+    margin: auto;
+    text-align: center;
+  }
+  
+  .form-side {
+    align-self: flex-start;
+    text-align: left;
+  }
+  
+  .image-container {
+    width: 40%;
+    text-align: center;
+  }
+  
+  .room-image {
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+  }
+  
+  h3 {
+    margin: 10px 0;
+  }
+  
+  p {
+    margin: 5px 0;
+  }
+  
