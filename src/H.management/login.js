@@ -7,7 +7,7 @@ const Login = ({ setIsLoggedIn }) => {
         const savedUsers = localStorage.getItem('users');
         return savedUsers
             ? JSON.parse(savedUsers)
-            : [{ username: 'admin', password: 'admin123' }]; // Default admin user for first-time setup
+            : [{ username: '', password: '' }]; // Default admin user for first-time setup
     });
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');

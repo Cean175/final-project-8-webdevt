@@ -66,7 +66,7 @@
     background: #fee6cc;
     transition: 1s;
 }
-/*------ Footer -----*/    
+    
 .footer{
     width: 100%;
     text-align: center;
@@ -82,15 +82,15 @@
 .icons {
     display: flex;
     justify-content: center;
-    gap: 20px;  /* Adjust the space between the icons */
+    gap: 20px;  
   }
   
-  /* Style for the icons */
+ 
   .icons .fa, .icons svg {
-    font-size: 20px;  /* Ensure all icons have the same size */
-    color: #734200;  /* Set default color */
-    cursor: pointer;  /* Pointer cursor on hover */
-    transition: all 0.3s ease;  /* Smooth transition effect */
-    padding: 12px;  /* Padding around the icon */
+    font-size: 20px; 
+    color: #734200; 
+    cursor: pointer;  
+    transition: all 0.3s ease;  
+    padding: 12px;  
   }
 
