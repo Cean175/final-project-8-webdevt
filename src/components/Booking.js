@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./component.css"; 
+import "./component.css";
 
 const roomsData = [
   {
@@ -40,8 +40,9 @@ const Booking = () => {
     checkIn: "",
     checkOut: "",
   });
-
   const [selectedRoom, setSelectedRoom] = useState(null);
+  const [confirmationDetails, setConfirmationDetails] = useState(null);
+  const [dateError, setDateError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,13 +53,70 @@ const Booking = () => {
 
     if (name === "roomType") {
       const room = roomsData.find((room) => room.id.toString() === value);
-      setSelectedRoom(room || null); 
+      setSelectedRoom(room || null);
     }
+  };
+
+  const generateConfirmationId = () => {
+    return "CONF-" + Math.floor(Math.random() * 1000000);
+  };
+
+  const validateDates = () => {
+    const currentDate = new Date();
+    const checkInDate = new Date(bookingDetails.checkIn);
+    const checkOutDate = new Date(bookingDetails.checkOut);
+
+    if (bookingDetails.checkIn && bookingDetails.checkOut) {
+      if (checkInDate < currentDate || checkOutDate < currentDate) {
+        setDateError("Check-in and check-out dates must be in the future.");
+        setTimeout(() => setDateError(""), 3000);
+        return false;
+      }
+
+      if (checkOutDate <= checkInDate) {
+        setDateError("Check-out date must be after check-in date.");
+        setTimeout(() => setDateError(""), 3000);
+        return false;
+      }
+
+      if (checkInDate.getFullYear() === currentDate.getFullYear()) {
+        if (checkInDate.getMonth() < currentDate.getMonth()) {
+          setDateError("Check-in date cannot be from past months.");
+          setTimeout(() => setDateError(""), 3000);
+          return false;
+        }
+      }
+
+      setDateError("");
+      return true;
+    }
+    return false;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(bookingDetails);
+    if (validateDates() && selectedRoom) {
+      const confirmationId = generateConfirmationId();
+      setConfirmationDetails({
+        ...bookingDetails,
+        roomName: selectedRoom.name,
+        price: selectedRoom.price,
+        confirmationId: confirmationId,
+      });
+    }
+  };
+
+  const handleCancelReservation = () => {
+    setBookingDetails({
+      name: "",
+      email: "",
+      roomType: "",
+      checkIn: "",
+      checkOut: "",
+    });
+    setSelectedRoom(null);
+    setConfirmationDetails(null);
+    setDateError("");
   };
 
   return (
@@ -88,25 +146,33 @@ const Booking = () => {
               </option>
             ))}
           </select>
+          <label className="date-label">Check-In</label>
           <input
             type="date"
             name="checkIn"
             placeholder="Check-In"
             value={bookingDetails.checkIn}
             onChange={handleChange}
+            min={new Date().toISOString().split("T")[0]} 
           />
+         
+         <label className="date-label">Check-Out</label>
           <input
             type="date"
             name="checkOut"
             placeholder="Check-Out"
             value={bookingDetails.checkOut}
             onChange={handleChange}
+            min={new Date().toISOString().split("T")[0]} 
           />
-          <button type="submit">Book Now</button>
+
+
+          {dateError && <p className="error-message">{dateError}</p>}
+          <button type="submit" disabled={dateError}>Book Now</button>
         </form>
       </div>
 
-      {selectedRoom && (
+      {selectedRoom && !confirmationDetails && (
         <div className="image-container">
           <div
             className="room-image"
@@ -117,6 +183,20 @@ const Booking = () => {
           <h3>{selectedRoom.name}</h3>
           <p>{selectedRoom.description}</p>
           <p>{selectedRoom.price}</p>
+        </div>
+      )}
+
+      {confirmationDetails && (
+        <div className="confirmation-container">
+          <h2>Booking Confirmation</h2>
+          <p><strong>Confirmation ID:</strong> {confirmationDetails.confirmationId}</p>
+          <p><strong>Name:</strong> {confirmationDetails.name}</p>
+          <p><strong>Email:</strong> {confirmationDetails.email}</p>
+          <p><strong>Room Type:</strong> {confirmationDetails.roomName}</p>
+          <p><strong>Price:</strong> {confirmationDetails.price}</p>
+          <p><strong>Check-In Date:</strong> {confirmationDetails.checkIn}</p>
+          <p><strong>Check-Out Date:</strong> {confirmationDetails.checkOut}</p>
+          <button onClick={handleCancelReservation}>Cancel Reservation</button>
         </div>
       )}
     </div>
