@@ -6,28 +6,28 @@ const roomsData = [
     id: 1,
     name: "Deluxe Suite",
     description: "A luxurious room with a king-size bed and stunning views.",
-    price: "₱11000/night",
+    price: 11000,
     image: "family-suite.jpg",
   },
   {
     id: 2,
     name: "Standard Room",
     description: "A comfortable room with modern amenities and a queen bed.",
-    price: "₱5000/night",
+    price: 5000,
     image: "430789848.jpg",
   },
   {
     id: 3,
     name: "Family Room",
     description: "Spacious room with two double beds, perfect for families.",
-    price: "₱7500/night",
+    price: 7500,
     image: "masthead-desktop.avif",
   },
   {
     id: 4,
     name: "Single Room",
     description: "Cozy room with a single bed for solo travelers.",
-    price: "₱3000/night",
+    price: 3000,
     image: "single.webp",
   },
 ];
@@ -43,6 +43,16 @@ const Booking = () => {
   const [selectedRoom, setSelectedRoom] = useState(null);
   const [confirmationDetails, setConfirmationDetails] = useState(null);
   const [dateError, setDateError] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState(null);
+  const [paymentConfirmed, setPaymentConfirmed] = useState(false);
+  const [amountEntered, setAmountEntered] = useState("");
+  const [cardDetails, setCardDetails] = useState({
+    cardType: "",
+    cardNumber: "",
+    cvc: "",
+    expirationDate: "",
+  });
+  const [paymentFee, setPaymentFee] = useState(0);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -55,10 +65,25 @@ const Booking = () => {
       const room = roomsData.find((room) => room.id.toString() === value);
       setSelectedRoom(room || null);
     }
+
+    if (name in cardDetails) {
+      setCardDetails({
+        ...cardDetails,
+        [name]: value,
+      });
+    }
+
+    if (name === "amountEntered") {
+      setAmountEntered(value);
+    }
   };
 
   const generateConfirmationId = () => {
     return "CONF-" + Math.floor(Math.random() * 1000000);
+  };
+
+  const generateReservationId = () => {
+    return "RES-" + Math.floor(Math.random() * 1000000);
   };
 
   const validateDates = () => {
@@ -77,14 +102,6 @@ const Booking = () => {
         setDateError("Check-out date must be after check-in date.");
         setTimeout(() => setDateError(""), 3000);
         return false;
-      }
-
-      if (checkInDate.getFullYear() === currentDate.getFullYear()) {
-        if (checkInDate.getMonth() < currentDate.getMonth()) {
-          setDateError("Check-in date cannot be from past months.");
-          setTimeout(() => setDateError(""), 3000);
-          return false;
-        }
       }
 
       setDateError("");
@@ -117,6 +134,38 @@ const Booking = () => {
     setSelectedRoom(null);
     setConfirmationDetails(null);
     setDateError("");
+    setPaymentMethod(null);
+    setPaymentConfirmed(false);
+    setCardDetails({
+      cardType: "",
+      cardNumber: "",
+      cvc: "",
+      expirationDate: "",
+    });
+    setAmountEntered("");
+  };
+
+  const handlePayment = (method) => {
+    setPaymentMethod(method);
+    if (method === "Card") {
+      setPaymentFee(selectedRoom.price * 0.02); 
+    }
+  };
+
+  const confirmPayment = () => {
+    if (paymentMethod === "Card" && parseFloat(amountEntered) === selectedRoom.price + paymentFee) {
+      setPaymentConfirmed(true);
+    } else if (paymentMethod === "Hotel" && parseFloat(amountEntered) === selectedRoom.price) {
+      setPaymentConfirmed(true);
+    } else {
+      alert("The entered amount is incorrect.");
+    }
+  };
+
+  const handleBack = () => {
+    setPaymentMethod(null);
+    setAmountEntered("");
+    setPaymentFee(0);
   };
 
   return (
@@ -150,23 +199,18 @@ const Booking = () => {
           <input
             type="date"
             name="checkIn"
-            placeholder="Check-In"
             value={bookingDetails.checkIn}
             onChange={handleChange}
-            min={new Date().toISOString().split("T")[0]} 
+            min={new Date().toISOString().split("T")[0]}
           />
-         
-         <label className="date-label">Check-Out</label>
+          <label className="date-label">Check-Out</label>
           <input
             type="date"
             name="checkOut"
-            placeholder="Check-Out"
             value={bookingDetails.checkOut}
             onChange={handleChange}
-            min={new Date().toISOString().split("T")[0]} 
+            min={new Date().toISOString().split("T")[0]}
           />
-
-
           {dateError && <p className="error-message">{dateError}</p>}
           <button type="submit" disabled={dateError}>Book Now</button>
         </form>
@@ -186,16 +230,44 @@ const Booking = () => {
         </div>
       )}
 
-      {confirmationDetails && (
-        <div className="confirmation-container">
-          <h2>Booking Confirmation</h2>
+      {confirmationDetails && !paymentConfirmed && (
+        <div className="payment-container">
+          <h2>Payment Options</h2>
           <p><strong>Confirmation ID:</strong> {confirmationDetails.confirmationId}</p>
           <p><strong>Name:</strong> {confirmationDetails.name}</p>
-          <p><strong>Email:</strong> {confirmationDetails.email}</p>
           <p><strong>Room Type:</strong> {confirmationDetails.roomName}</p>
-          <p><strong>Price:</strong> {confirmationDetails.price}</p>
-          <p><strong>Check-In Date:</strong> {confirmationDetails.checkIn}</p>
-          <p><strong>Check-Out Date:</strong> {confirmationDetails.checkOut}</p>
+          <p><strong>Price:</strong> ₱{confirmationDetails.price}</p>
+          <button onClick={() => handlePayment("Hotel")}>Pay at Hotel</button>
+          <button onClick={() => handlePayment("Card")}>Pay by Card</button>
+        </div>
+      )}
+
+      {paymentMethod && !paymentConfirmed && (
+        <div className="payment-details">
+          <h3>Enter Payment Amount</h3>
+          <input
+            type="number"
+            name="amountEntered"
+            placeholder="Amount"
+            value={amountEntered}
+            onChange={handleChange}
+          />
+          <p><strong>Transaction Fee:</strong> ₱{paymentFee}</p>
+          <button onClick={confirmPayment}>Confirm Payment</button>
+          <button onClick={handleBack}>Back</button>
+        </div>
+      )}
+
+      {paymentConfirmed && (
+        <div className="receipt-container">
+          <h2>Receipt</h2>
+          <p><strong>{paymentMethod === "Hotel" ? "Reservation ID" : "Confirmation ID"}:</strong> {paymentMethod === "Hotel" ? generateReservationId() : confirmationDetails.confirmationId}</p>
+          <p><strong>Name:</strong> {confirmationDetails.name}</p>
+          <p><strong>Room Type:</strong> {confirmationDetails.roomName}</p>
+          <p><strong>Price:</strong> ₱{confirmationDetails.price}</p>
+          {paymentMethod === "Hotel" && (
+            <p><strong>Note:</strong> Your reservation will not be completed if you do not settle payment.</p>
+          )}
           <button onClick={handleCancelReservation}>Cancel Reservation</button>
         </div>
       )}
