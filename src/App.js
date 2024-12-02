@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Booking from './components/Booking';
 import Contact from './components/Contact';
 import Rooms from './components/Rooms';
+import Admin from './components/admin_component/admin';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -23,16 +24,23 @@ function App() {
 
   return (
     <Router>
-      {/* Render Header only if logged in, and pass setIsLoggedIn as a prop */}
+      
       {isLoggedIn && <Header setIsLoggedIn={setIsLoggedIn} />}
       <Routes>
-        {/* Redirect root to home if logged in */}
+      
+      <Route
+           path="/admin"
+           element={<ProtectedRoute adminOnly>
+      <Admin />
+      </ProtectedRoute>
+  }
+/>
+        
         <Route
           path="/"
           element={isLoggedIn ? <Navigate to="/home" /> : <Login setIsLoggedIn={setIsLoggedIn} />}
         />
 
-        {/* Protected Route for Home */}
         <Route
           path="/home"
           element={
@@ -42,7 +50,7 @@ function App() {
           }
         />
 
-        {/* Protected Route for Rooms */}
+        
         <Route
           path="/rooms"
           element={
@@ -52,7 +60,7 @@ function App() {
           }
         />
 
-        {/* Protected Route for Booking */}
+        
         <Route
           path="/booking"
           element={
@@ -62,7 +70,7 @@ function App() {
           }
         />
 
-        {/* Protected Route for Contact */}
+        
         <Route
           path="/contact"
           element={
