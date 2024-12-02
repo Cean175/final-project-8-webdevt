@@ -1,0 +1,56 @@
+/* Ensure no default margin or padding on body */
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Hero Section Styling */
+  .hero-section {
+    background: url('/public/bg.png') no-repeat center center/cover;
+    background-attachment: fixed; /* Keeps the background fixed while scrolling */
+    height: 100vh; /* Full height of the viewport */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Aligns content to the left */
+    color: white;
+    text-align: left; /* Aligns text to the left */
+    padding: 0; /* Remove all padding */
+    margin: 0; /* Remove any margin */
+  }
+  
+  .hero-content {
+    margin-left: 40px;
+    max-width: 600px; /* Restricts the content width for better design */
+    padding-left: 20px; /* Optional: Adds some space from the left edge */
+  }
+  
+  .hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
+  .hero-content p {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+  
+  .hero-buttons {
+    margin-top: 20px;
+  }
+  
+  .hero-buttons .book-now,
+  .hero-buttons .view-offers {
+    background-color: #460e05;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .hero-buttons .book-now:hover,
+  .hero-buttons .view-offers:hover {
+    background-color: #460e05;
+  }
+  

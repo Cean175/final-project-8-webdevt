@@ -15,7 +15,7 @@ function App() {
   });
 
   useEffect(() => {
-    localStorage.setItem('loggedIn', isLoggedIn); 
+    localStorage.setItem('loggedIn', isLoggedIn);
   }, [isLoggedIn]);
 
   const ProtectedRoute = ({ children }) => {
@@ -24,23 +24,20 @@ function App() {
 
   return (
     <Router>
-      
       {isLoggedIn && <Header setIsLoggedIn={setIsLoggedIn} />}
       <Routes>
-      
-      <Route
-           path="/admin"
-           element={<ProtectedRoute adminOnly>
-      <Admin />
-      </ProtectedRoute>
-  }
-/>
-        
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute adminOnly>
+              <Admin />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/"
           element={isLoggedIn ? <Navigate to="/home" /> : <Login setIsLoggedIn={setIsLoggedIn} />}
         />
-
         <Route
           path="/home"
           element={
@@ -49,8 +46,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
-        
         <Route
           path="/rooms"
           element={
@@ -59,8 +54,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
-        
         <Route
           path="/booking"
           element={
@@ -69,8 +62,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
-        
         <Route
           path="/contact"
           element={

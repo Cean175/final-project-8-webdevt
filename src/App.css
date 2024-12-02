@@ -1,11 +1,13 @@
-/* General Body and Container Styles */
 body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background: #f5f5f5;
+  background-image: linear-gradient(to bottom right, #6C4F3D, #A49A8A); /* Cool-toned brown shades */
+  min-height: 100vh; /* Ensure body fills the entire viewport */
+  padding-top: 80px; /* Adjust padding if necessary */
 }
 
+/* Container Styles */
 .container {
   display: flex;
   justify-content: center;
@@ -27,74 +29,6 @@ body {
 
 .welcome-box button:hover {
   background-color: #218838;
-}
-
-/* Navbar */
-nav {
-  background-color: #333;
-  padding: 0.01em 1em; /* Reduced padding for smaller height */
-  margin-bottom: 20px;
-  border-bottom: 2px solid #000; /* Reduced border thickness */
-}
-
-
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: space-around;
-  padding: 0;
-  align-items: center;
-}
-
-nav ul li {
-  margin: 0 1em;
-}
-
-nav ul li a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 14px; /* Adjust font size */
-}
-
-/* Navbar Dropdown */
-.dropdown-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 0.5em;
-  color: white;
-}
-
-.dropdown {
-  position: relative;
-}
-
-.dropdown-menu {
-  position: absolute;
-  background-color: white;
-  border: 1px solid #ccc;
-  list-style-type: none;
-  padding: 0;
-  margin-top: 5px;
-  width: 120px;
-  display: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.dropdown-menu li {
-  padding: 8px;
-  text-align: center;
-  background-color: #fff;
-  color: #333;
-}
-
-.dropdown.open .dropdown-menu {
-  display: block;
-}
-
-.dropdown-menu li:hover {
-  background-color: #f0f0f0;
 }
 
 /* Login Box */
@@ -174,6 +108,7 @@ button:hover {
 .home-container, .rooms-container, .booking-container, .contact-container {
   padding: 2em;
   text-align: center;
+  margin-top: 60px; /* Ensure content doesn't overlap with navbar (adjust if needed) */
 }
 
 .booking-container form {
@@ -194,7 +129,7 @@ button:hover {
   gap: 20px;
   justify-content: center;
   padding: 20px;
-  background-color: #f9f9f9;
+  margin-top: 120px; /* Adjust this to match the height of your navbar */
 }
 
 .room-box {
@@ -236,4 +171,65 @@ button:hover {
   font-weight: bold;
   color: #1d8f91;
   margin-top: 10px;
+}
+
+.room-details-box {
+  margin-bottom: 40px; /* Space below the container */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.room-details h2 {
+  text-align: center; /* Centers the text */
+  color: white; /* Makes the text color white */
+  font-size: 2rem; /* Adjust the font size as needed */
+  margin-bottom: 20px; /* Adds space below the heading */
+}
+
+
+/* Amenities Box */
+.amenities-box {
+  margin-top: 20px;
+  margin-bottom: 20px; /* Added margin at the bottom */
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Amenities Title */
+.amenities-content h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: #1d8f91;
+  font-weight: bold;
+}
+
+/* Amenities List */
+.amenities-content ul {
+  list-style-type: none; /* Removes default bullets */
+  padding: 0;
+  margin: 0;
+}
+
+.amenities-content ul li {
+  font-size: 1em;
+  color: #333;
+  margin-bottom: 8px; /* Adds space between each amenity */
+}
+
+/* Exit Button */
+.exit-btn {
+  background-color: #1d8f91;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  margin-top: 20px;
+}
+
+.exit-btn:hover {
+  background-color: #460e05;
 }

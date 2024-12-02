@@ -21,18 +21,19 @@
 }
 .contact-col div .fa, .contact-col div svg {
     font-size: 28px;
-    color: #734200;
+    color: #460e05;
     margin: 10px;
     margin-right: 30px;
 }
 
 .contact-col div p{
     padding: 0;
+    color: #f1f1f1;
 }
 .contact-col div h5{
     font-size: 20px;
     margin-bottom: 5px;
-    color: #555;
+    color: #f1f1f1;
     font-weight: 400;
 }
 .contact-col input, .contact-col textarea{
@@ -40,7 +41,7 @@
     padding: 15px;
     margin-bottom: 17px;
     outline: none;
-    border: 1px solid #ccc;
+    border: 1px solid #f1f1f1;
     box-sizing: border-box;
 }
 
@@ -53,8 +54,8 @@
 .hero-btn{
     display: inline-block;
     text-decoration: none;
-    color: black;
-    border: 2px solid #000;
+    color: 460e05;
+    border: 2px solid #f1f1f1;
     padding: 12px 34px;
     font-size: 20px;
     background: transparent;
@@ -62,35 +63,7 @@
     cursor: pointer;
 }
 .hero-btn:hover{
-    border: 2px solid #fee6cc;
-    background: #fee6cc;
+    border: 2px solid #460e05;
+    background: #460e05;
     transition: 1s;
 }
-    
-.footer{
-    width: 100%;
-    text-align: center;
-    padding: 30px 0;
-    background-color: #fee6cc;
-}
-    
-.footer h4{
-    margin-bottom: 25px;
-    margin-top: 20px;
-    font-weight: 600;
-}
-.icons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;  
-  }
-  
- 
-  .icons .fa, .icons svg {
-    font-size: 20px; 
-    color: #734200; 
-    cursor: pointer;  
-    transition: all 0.3s ease;  
-    padding: 12px;  
-  }
-

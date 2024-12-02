@@ -1,19 +1,15 @@
 import React from 'react';
 import './contact.css'; 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSquareFacebook, faSquareXTwitter, faSquareInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faHotel, faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
 
 const Contact = () => {
   return (
     <div>
-      <section className="subheader">
-        <h1>Contact Us</h1>
-      </section>
 
       <section className="location">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15259.13871623326!2d121.32122723412638!3d14.061116876233223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd5c96860a894b%3A0xfa9e0f05004f4aca!2sSan%20Pablo%20City%2C%20Laguna!5e0!3m2!1sen!2sph!4v1667904962100!5m2!1sen!2sph"
+           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d123911.6096229778!2d121.08576800066254!3d13.944441591546939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd13576170055f%3A0xe6da25b39082662a!2sLipa%2C%20Batangas!5e0!3m2!1sen!2sph!4v1733114959953!5m2!1sen!2sph"
           width="600"
           height="450"
           style={{ border: 0 }}
@@ -31,14 +27,14 @@ const Contact = () => {
               <FontAwesomeIcon icon={faHotel} />
               <span>
                 <h5>ABC Street, DEF Building</h5>
-                <p>San Pablo City, Laguna</p>
+                <p>Lipa, Batangas</p>
               </span>
             </div>
             <div>
               <FontAwesomeIcon icon={faPhone} />
               <span>
                 <h5>+63 012 3456 789</h5>
-                <p>Monday to Sunday, 10AM to 6PM</p>
+                <p>Contact us</p>
               </span>
             </div>
             <div>
@@ -58,16 +54,6 @@ const Contact = () => {
               <button type="submit" className="hero-btn brown-btn">Send Message</button>
             </form>
           </div>
-        </div>
-      </section>
-
-      <section className="footer">
-        <h4>Connect with us</h4>
-        <p>Hotel</p>
-        <div className="icons">
-          <FontAwesomeIcon icon={faSquareFacebook} />
-          <FontAwesomeIcon icon={faSquareXTwitter} />
-          <FontAwesomeIcon icon={faSquareInstagram} />
         </div>
       </section>
     </div>
