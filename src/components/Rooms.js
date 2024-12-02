@@ -7,7 +7,7 @@ const roomsData = [
     description: "A luxurious room with a king-size bed and stunning views.",
     price: "₱11000/night",
     image: "family-suite.jpg",
-    amenities: ["King-size bed", "Ocean view", "Private balcony"],
+    amenities: ["King-size bed", "Ocean view", "Private balcony","High-Speed Wi-Fi"],
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ const roomsData = [
     description: "A comfortable room with modern amenities and a queen bed.",
     price: "₱5000/night",
     image: "430789848.jpg",
-    amenities: ["Queen bed", "WiFi", "Air conditioning"],
+    amenities: ["Queen bed", "Fast Wi-Fi", "Air conditioning"],
   },
   {
     id: 3,
@@ -23,7 +23,7 @@ const roomsData = [
     description: "Spacious room with two double beds, perfect for families.",
     price: "₱7500/night",
     image: "masthead-desktop.avif",
-    amenities: ["Two double beds", "Child-friendly", "Free breakfast"],
+    amenities: ["Two double beds", "Kid-friendly open areas", "Free breakfast", "Entertainment for both kids and adults"],
   },
   {
     id: 4,
@@ -31,7 +31,7 @@ const roomsData = [
     description: "Cozy room with a single bed for solo travelers.",
     price: "₱3000/night",
     image: "single.webp",
-    amenities: ["Single bed", "Free WiFi", "Private bathroom"],
+    amenities: ["Single bed", "Free Wi-Fi", "Private bathroom"],
   },
 ];
 

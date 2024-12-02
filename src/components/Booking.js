@@ -112,6 +112,7 @@ const Booking = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("Form Submitted");
     if (validateDates() && selectedRoom) {
       const confirmationId = generateConfirmationId();
       const newBooking = {
@@ -126,7 +127,10 @@ const Booking = () => {
       storedBookings.push(newBooking);
       localStorage.setItem("bookings", JSON.stringify(storedBookings));
 
+      console.log("Booking Confirmed:", newBooking);
       setConfirmationDetails(newBooking);
+    } else {
+      console.log("Booking failed, either no room selected or invalid dates.");
     }
   };
 
@@ -155,17 +159,21 @@ const Booking = () => {
   const handlePayment = (method) => {
     setPaymentMethod(method);
     if (method === "Card") {
-      setPaymentFee(selectedRoom.price * 0.02); 
+      setPaymentFee(selectedRoom.price * 0.02); // Example transaction fee (2%)
     }
   };
 
   const confirmPayment = () => {
+    console.log("Confirming Payment");
     if (paymentMethod === "Card" && parseFloat(amountEntered) === selectedRoom.price + paymentFee) {
       setPaymentConfirmed(true);
+      console.log("Payment Confirmed");
     } else if (paymentMethod === "Hotel" && parseFloat(amountEntered) === selectedRoom.price) {
       setPaymentConfirmed(true);
+      console.log("Payment Confirmed");
     } else {
       alert("The entered amount is incorrect.");
+      console.log("Payment failed: Incorrect amount");
     }
   };
 
@@ -233,7 +241,7 @@ const Booking = () => {
           ></div>
           <h3>{selectedRoom.name}</h3>
           <p>{selectedRoom.description}</p>
-          <p>{selectedRoom.price}</p>
+          <p>₱{selectedRoom.price}</p>
         </div>
       )}
 
@@ -243,6 +251,8 @@ const Booking = () => {
           <p><strong>Confirmation ID:</strong> {confirmationDetails.confirmationId}</p>
           <p><strong>Name:</strong> {confirmationDetails.name}</p>
           <p><strong>Room Type:</strong> {confirmationDetails.roomName}</p>
+          <p><strong>Check-In Date:</strong> {confirmationDetails.checkIn}</p>
+          <p><strong>Check-Out Date:</strong> {confirmationDetails.checkOut}</p>
           <p><strong>Price:</strong> ₱{confirmationDetails.price}</p>
           <button onClick={() => handlePayment("Hotel")}>Pay at Hotel</button>
           <button onClick={() => handlePayment("Card")}>Pay by Card</button>
@@ -251,27 +261,28 @@ const Booking = () => {
 
       {paymentMethod && !paymentConfirmed && (
         <div className="payment-details">
-          <h3>Enter Payment Amount</h3>
+          <h3>Enter Amount</h3>
           <input
             type="number"
             name="amountEntered"
-            placeholder="Amount"
             value={amountEntered}
             onChange={handleChange}
+            placeholder={`₱${selectedRoom.price + paymentFee}`}
           />
-          <p><strong>Transaction Fee:</strong> ₱{paymentFee}</p>
           <button onClick={confirmPayment}>Confirm Payment</button>
           <button onClick={handleBack}>Back</button>
         </div>
       )}
 
       {paymentConfirmed && (
-        <div className="receipt-container">
-          <h2>Receipt</h2>
-          <p><strong>{paymentMethod === "Hotel" ? "Reservation ID" : "Confirmation ID"}:</strong> {paymentMethod === "Hotel" ? generateReservationId() : confirmationDetails.confirmationId}</p>
-          <p><strong>Name:</strong> {confirmationDetails.name}</p>
+        <div className="confirmation-details">
+          <h2>Payment Confirmed</h2>
+          <p>Your reservation has been confirmed!</p>
+          <p><strong>Confirmation ID:</strong> {confirmationDetails.confirmationId}</p>
           <p><strong>Room Type:</strong> {confirmationDetails.roomName}</p>
-          <p><strong>Price:</strong> ₱{confirmationDetails.price}</p>
+          <p><strong>Check-In Date:</strong> {confirmationDetails.checkIn}</p>
+          <p><strong>Check-Out Date:</strong> {confirmationDetails.checkOut}</p>
+          <p><strong>Amount Paid:</strong> ₱{selectedRoom.price + paymentFee}</p>
           <button onClick={handleCancelReservation}>Cancel Reservation</button>
         </div>
       )}
