@@ -5,20 +5,20 @@ const Header = ({ setIsLoggedIn }) => {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
 
-  // Initialize useNavigate
+  
   const navigate = useNavigate();
 
   const toggleDropdown = () => setDropdown(!dropdown);
 
   const handleLogout = () => {
-    // Perform any logout actions you need here (like clearing session, tokens, etc.)
+   
     alert('Logging out...');
 
-    // Clear the logged-in state and localStorage
-    setIsLoggedIn(false); // Reset the logged-in state
-    localStorage.setItem('loggedIn', 'false'); // Update localStorage
+    
+    setIsLoggedIn(false);
+    localStorage.setItem('loggedIn', 'false'); 
 
-    // Navigate to the login page
+    
     navigate('/');
   };
 
@@ -43,13 +43,13 @@ const Header = ({ setIsLoggedIn }) => {
               <Link to="/contact">Contact</Link>
             </li>
 
-            {/* Dropdown for Account */}
+            
             <li className={`dropdown ${dropdown ? 'open' : ''}`} onClick={toggleDropdown}>
               <button className="dropdown-btn">Account</button>
               {dropdown && (
                 <ul className="dropdown-menu">
                   <li>
-                    {/* Update Logout button to use the handleLogout function */}
+                    
                     <button onClick={handleLogout}>Logout</button>
                   </li>
                 </ul>
