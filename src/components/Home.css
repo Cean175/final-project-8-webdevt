@@ -7,21 +7,21 @@ body {
   /* Hero Section Styling */
   .hero-section {
     background: url('/public/bg.png') no-repeat center center/cover;
-    background-attachment: fixed; /* Keeps the background fixed while scrolling */
-    height: 100vh; /* Full height of the viewport */
+    background-attachment: fixed;
+    height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Aligns content to the left */
+    justify-content: flex-start;
     color: white;
-    text-align: left; /* Aligns text to the left */
-    padding: 0; /* Remove all padding */
-    margin: 0; /* Remove any margin */
+    text-align: left;
+    padding: 0;
+    margin: 0;
   }
   
   .hero-content {
     margin-left: 40px;
-    max-width: 600px; /* Restricts the content width for better design */
-    padding-left: 20px; /* Optional: Adds some space from the left edge */
+    max-width: 600px;
+    padding-left: 20px;
   }
   
   .hero-content h1 {

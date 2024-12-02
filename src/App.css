@@ -1,10 +1,10 @@
-body {
+body { 
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-image: linear-gradient(to bottom right, #6C4F3D, #A49A8A); /* Cool-toned brown shades */
-  min-height: 100vh; /* Ensure body fills the entire viewport */
-  padding-top: 80px; /* Adjust padding if necessary */
+  background-image: linear-gradient(to bottom right, #6C4F3D, #A49A8A);
+  min-height: 100vh;
+  padding-top: 80px;
 }
 
 /* Container Styles */
@@ -108,7 +108,7 @@ button:hover {
 .home-container, .rooms-container, .booking-container, .contact-container {
   padding: 2em;
   text-align: center;
-  margin-top: 60px; /* Ensure content doesn't overlap with navbar (adjust if needed) */
+  margin-top: 60px;
 }
 
 .booking-container form {
@@ -129,7 +129,7 @@ button:hover {
   gap: 20px;
   justify-content: center;
   padding: 20px;
-  margin-top: 120px; /* Adjust this to match the height of your navbar */
+  margin-top: 120px;
 }
 
 .room-box {
@@ -174,23 +174,23 @@ button:hover {
 }
 
 .room-details-box {
-  margin-bottom: 40px; /* Space below the container */
+  margin-bottom: 40px;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-.room-details h2 {
-  text-align: center; /* Centers the text */
-  color: white; /* Makes the text color white */
-  font-size: 2rem; /* Adjust the font size as needed */
-  margin-bottom: 20px; /* Adds space below the heading */
-}
 
+.room-details h2 {
+  text-align: center;
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
 
 /* Amenities Box */
 .amenities-box {
   margin-top: 20px;
-  margin-bottom: 20px; /* Added margin at the bottom */
+  margin-bottom: 20px;
   background-color: #f4f4f4;
   padding: 20px;
   border-radius: 8px;
@@ -207,7 +207,7 @@ button:hover {
 
 /* Amenities List */
 .amenities-content ul {
-  list-style-type: none; /* Removes default bullets */
+  list-style-type: none;
   padding: 0;
   margin: 0;
 }
@@ -215,7 +215,7 @@ button:hover {
 .amenities-content ul li {
   font-size: 1em;
   color: #333;
-  margin-bottom: 8px; /* Adds space between each amenity */
+  margin-bottom: 8px;
 }
 
 /* Exit Button */
