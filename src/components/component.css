@@ -1,15 +1,22 @@
 .booking-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 60vh;
-    gap: 20px;
-  }
-  
-  .form-container {
-    width: 40%;
-    transition: all 0.5s ease;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 60vh;
+  gap: 20px;
+  flex-wrap: wrap; /* Ensures responsiveness on smaller screens */
+}
+
+.form-container {
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
+}
   
   .form-center {
     margin: auto;
