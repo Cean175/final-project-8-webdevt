@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./component.css";
+import "./booking.css";
 
 const roomsData = [
   {
@@ -185,105 +185,112 @@ const Booking = () => {
 
   return (
     <div className="booking-container">
-      <div className={`form-container ${selectedRoom ? "form-side" : "form-center"}`}>
-        <h1>Book a Room</h1>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            value={bookingDetails.name}
-            onChange={handleChange}
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={bookingDetails.email}
-            onChange={handleChange}
-          />
-          <select name="roomType" value={bookingDetails.roomType} onChange={handleChange}>
-            <option value="">Select Room Type</option>
-            {roomsData.map((room) => (
-              <option key={room.id} value={room.id}>
-                {room.name}
-              </option>
-            ))}
-          </select>
-          <label className="date-label">Check-In</label>
-          <input
-            type="date"
-            name="checkIn"
-            value={bookingDetails.checkIn}
-            onChange={handleChange}
-            min={new Date().toISOString().split("T")[0]}
-          />
-          <label className="date-label">Check-Out</label>
-          <input
-            type="date"
-            name="checkOut"
-            value={bookingDetails.checkOut}
-            onChange={handleChange}
-            min={new Date().toISOString().split("T")[0]}
-          />
-          {dateError && <p className="error-message">{dateError}</p>}
-          <button type="submit" disabled={dateError}>Book Now</button>
-        </form>
+      <div className="form-wrapper">
+        <div className={`form-container ${selectedRoom ? "form-side" : "form-center"}`}>
+          <h1>Book a Room</h1>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              value={bookingDetails.name}
+              onChange={handleChange}
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={bookingDetails.email}
+              onChange={handleChange}
+            />
+            <select name="roomType" value={bookingDetails.roomType} onChange={handleChange}>
+              <option value="">Select Room Type</option>
+              {roomsData.map((room) => (
+                <option key={room.id} value={room.id}>
+                  {room.name}
+                </option>
+              ))}
+            </select>
+            <label className="date-label">Check-In</label>
+            <input
+              type="date"
+              name="checkIn"
+              value={bookingDetails.checkIn}
+              onChange={handleChange}
+              min={new Date().toISOString().split("T")[0]}
+            />
+            <label className="date-label">Check-Out</label>
+            <input
+              type="date"
+              name="checkOut"
+              value={bookingDetails.checkOut}
+              onChange={handleChange}
+              min={new Date().toISOString().split("T")[0]}
+            />
+            {dateError && <p className="error-message">{dateError}</p>}
+            <button type="submit" disabled={dateError}>Book Now</button>
+          </form>
+        </div>
       </div>
 
       {selectedRoom && !confirmationDetails && (
-        <div className="image-container">
-          <div
-            className="room-image"
-            style={{
-              backgroundImage: `url(${selectedRoom.image})`,
-            }}
-          ></div>
-          <h3>{selectedRoom.name}</h3>
-          <p>{selectedRoom.description}</p>
-          <p>₱{selectedRoom.price}</p>
+        <div className="image-wrapper">
+          <div className="image-container">
+            <div
+              className="room-image"
+              style={{
+                backgroundImage: `url(${selectedRoom.image})`,
+              }}
+            ></div>
+            <h3>{selectedRoom.name}</h3>
+            <p>{selectedRoom.description}</p>
+            <p>{selectedRoom.price}</p>
+          </div>
         </div>
       )}
 
       {confirmationDetails && !paymentConfirmed && (
-        <div className="payment-container">
-          <h2>Payment Options</h2>
-          <p><strong>Confirmation ID:</strong> {confirmationDetails.confirmationId}</p>
-          <p><strong>Name:</strong> {confirmationDetails.name}</p>
-          <p><strong>Room Type:</strong> {confirmationDetails.roomName}</p>
-          <p><strong>Check-In Date:</strong> {confirmationDetails.checkIn}</p>
-          <p><strong>Check-Out Date:</strong> {confirmationDetails.checkOut}</p>
-          <p><strong>Price:</strong> ₱{confirmationDetails.price}</p>
-          <button onClick={() => handlePayment("Hotel")}>Pay at Hotel</button>
-          <button onClick={() => handlePayment("Card")}>Pay by Card</button>
+        <div className="payment-wrapper">
+          <div className="payment-container">
+            <h2>Payment Options</h2>
+            <p><strong>Confirmation ID:</strong> {confirmationDetails.confirmationId}</p>
+            <p><strong>Name:</strong> {confirmationDetails.name}</p>
+            <p><strong>Room Type:</strong> {confirmationDetails.roomName}</p>
+            <p><strong>Price:</strong> ₱{confirmationDetails.price}</p>
+            <button onClick={() => handlePayment("Hotel")}>Pay at Hotel</button>
+            <button onClick={() => handlePayment("Card")}>Pay by Card</button>
+          </div>
         </div>
       )}
 
       {paymentMethod && !paymentConfirmed && (
-        <div className="payment-details">
-          <h3>Enter Amount</h3>
-          <input
-            type="number"
-            name="amountEntered"
-            value={amountEntered}
-            onChange={handleChange}
-            placeholder={`₱${selectedRoom.price + paymentFee}`}
-          />
-          <button onClick={confirmPayment}>Confirm Payment</button>
-          <button onClick={handleBack}>Back</button>
+        <div className="payment-details-wrapper">
+          <div className="payment-details">
+            <h3>Enter Payment Amount</h3>
+            <input
+              type="number"
+              name="amountEntered"
+              placeholder="Amount"
+              value={amountEntered}
+              onChange={handleChange}
+            />
+            <p><strong>Transaction Fee:</strong> ₱{paymentFee}</p>
+            <button onClick={confirmPayment}>Confirm Payment</button>
+            <button onClick={handleBack}>Back</button>
+          </div>
         </div>
       )}
 
       {paymentConfirmed && (
-        <div className="confirmation-details">
-          <h2>Payment Confirmed</h2>
-          <p>Your reservation has been confirmed!</p>
-          <p><strong>Confirmation ID:</strong> {confirmationDetails.confirmationId}</p>
-          <p><strong>Room Type:</strong> {confirmationDetails.roomName}</p>
-          <p><strong>Check-In Date:</strong> {confirmationDetails.checkIn}</p>
-          <p><strong>Check-Out Date:</strong> {confirmationDetails.checkOut}</p>
-          <p><strong>Amount Paid:</strong> ₱{selectedRoom.price + paymentFee}</p>
-          <button onClick={handleCancelReservation}>Cancel Reservation</button>
+        <div className="receipt-wrapper">
+          <div className="receipt-container">
+            <h2>Receipt</h2>
+            <p><strong>{paymentMethod === "Hotel" ? "Reservation ID" : "Confirmation ID"}:</strong> {paymentMethod === "Hotel" ? generateReservationId() : confirmationDetails.confirmationId}</p>
+            <p><strong>Name:</strong> {confirmationDetails.name}</p>
+            <p><strong>Room Type:</strong> {confirmationDetails.roomName}</p>
+            <p><strong>Price:</strong> ₱{confirmationDetails.price}</p>
+            <button onClick={handleCancelReservation}>Cancel Reservation</button>
+          </div>
         </div>
       )}
     </div>

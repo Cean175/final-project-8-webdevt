@@ -1,67 +1,64 @@
 /* General Styling */
 .header {
-    position: fixed; /* Keeps the header at the top */
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%; /* Full width of the page */
-    display: flex; /* Align elements horizontally */
-    justify-content: space-between; /* Space out the hotel name and navbar */
-    align-items: center; /* Vertically center items */
-    padding: 10px 20px; /* Add padding for spacing */
-    background: rgba(255, 255, 255, 0.245); /* Maintain existing background */
-    z-index: 1000; /* Ensure it stays on top */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.245);
+    z-index: 1000;
   }
   
   /* Hotel Name Styling */
   .hotel-name {
-    font-size: 1rem; /* Adjust font size as needed */
+    font-size: 1rem;
     color: white;
     font-weight: bold;
     margin-left: 40px;
   }
   
   /* Navbar Styling */
-/* Navbar Styling */
-.navbar {
-  position: fixed; /* Fix the navbar to the top of the viewport */
-  top: 0; /* Place it at the very top */
-  left: 0; /* Stretch it to the left edge */
-  width: 100%; /* Make it span the full width */
-  z-index: 1000; /* Ensure it stays above other elements */
-}
-
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
   
   /* Navbar Container */
   .navbar-container {
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* Keeps the menu aligned correctly */
-    margin-right: 40px; /* Prevents excessive spacing on the right */
+    justify-content: flex-end;
+    margin-right: 40px;
   }
   
   /* Nav Menu */
   .nav-menu {
     display: flex;
     list-style: none;
-    gap: 20px; /* Space between menu items */
-    align-items: center; /* Vertical alignment */
-    margin-right: 0; /* Prevents unnecessary spacing to the right */
+    gap: 20px;
+    align-items: center;
+    margin-right: 0;
   }
-  
   
   .nav-links {
     color: white;
     text-decoration: none;
-    font-size: 20px; /* Adjusted font size */
+    font-size: 20px;
     font-weight: 600;
     padding: 5px 10px;
     display: flex;
-    align-items: center; /* Ensures vertical alignment */
+    align-items: center;
     transition: color 0.3s ease;
   }
   
   .nav-links:hover {
-    color: #460e05; /* Gold hover effect */
+    color: #460e05;
   }
   
   /* Dropdown Menu */
@@ -73,7 +70,7 @@
     font-weight: bold;
     cursor: pointer;
     display: flex;
-    align-items: center; /* Ensures dropdown button is aligned */
+    align-items: center;
   }
   
   .dropdown-menu {
@@ -120,7 +117,7 @@
   
   @media (max-width: 768px) {
     .header {
-      flex-direction: column; /* Stack items vertically for smaller screens */
+      flex-direction: column;
       align-items: flex-start;
     }
   

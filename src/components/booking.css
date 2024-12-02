@@ -1,0 +1,265 @@
+/* booking.css */
+
+/* General container styles */
+.booking-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    min-height: 100vh;
+  }
+  
+  .form-wrapper,
+  .image-wrapper,
+  .payment-wrapper,
+  .payment-details-wrapper,
+  .receipt-wrapper {
+    width: 100%;
+    max-width: 900px;
+    margin: 20px 0;
+    box-sizing: border-box;
+  }
+  
+  /* Form container styling */
+  .form-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-container h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .form-container input,
+  .form-container select,
+  .form-container button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  .form-container button {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .form-container button:disabled {
+    background-color: #bbb;
+    cursor: not-allowed;
+  }
+  
+  .form-container input:focus,
+  .form-container select:focus {
+    border-color: #4CAF50;
+    outline: none;
+  }
+  
+  .date-label {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .error-message {
+    color: #e74c3c;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 5px;
+  }
+  
+  /* Room image container */
+  .image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .room-image {
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .image-container h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .image-container p {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #666;
+  }
+  
+  /* Payment container */
+  .payment-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .payment-container h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .payment-container p {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .payment-container button {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .payment-container button:disabled {
+    background-color: #bbb;
+    cursor: not-allowed;
+  }
+  
+  /* Payment details section */
+  .payment-details {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .payment-details h3 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .payment-details input {
+    margin-bottom: 15px;
+    font-size: 18px;
+    padding: 12px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  
+  .payment-details input:focus {
+    border-color: #4CAF50;
+    outline: none;
+  }
+  
+  .payment-details button {
+    width: 100%;
+    padding: 15px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 6px;
+    border: none;
+  }
+  
+  .payment-details button:disabled {
+    background-color: #bbb;
+    cursor: not-allowed;
+  }
+  
+  /* Receipt container */
+  .receipt-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .receipt-container h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .receipt-container p {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .receipt-container button {
+    width: 100%;
+    padding: 15px;
+    background-color: #e74c3c;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 6px;
+    border: none;
+  }
+  
+  .receipt-container button:disabled {
+    background-color: #bbb;
+    cursor: not-allowed;
+  }
+  
+  /* Responsive styling */
+  @media (max-width: 768px) {
+    .form-container,
+    .image-container,
+    .payment-container,
+    .payment-details,
+    .receipt-container {
+      width: 90%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .form-container input,
+    .form-container select,
+    .form-container button,
+    .payment-details input,
+    .payment-details button {
+      font-size: 14px;
+    }
+  
+    .room-image {
+      height: 250px;
+    }
+  
+    .image-container h3 {
+      font-size: 22px;
+    }
+  
+    .image-container p {
+      font-size: 16px;
+    }
+  }
+  
